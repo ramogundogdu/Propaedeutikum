@@ -11,6 +11,6 @@ bin-release/
 # information for Eclipse / Flash Builder.
 
 #ignore Image-Files
-.JPG
-.JPEG
-.CR2
+#*.jpg
+#*.jpeg
+#*.cr2
