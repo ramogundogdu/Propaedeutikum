@@ -80,6 +80,9 @@ dR = p(1:2) - px(1:2)./px(3) ;
 % vertical diplacement must be the same
 dL(2) = dR(2);
 
+dL
+dR
+
 %  rectification with centering
 [TL,TR,pml1,pmr1] = rectify(pml,pmr,dL,dR);
 
@@ -92,10 +95,10 @@ bb = mcbb(size(IL),size(IR), TL, TR);
 for c = 1:3
 
     % Warp LEFT
-    [JL(:,:,c),bbL,alphaL] = imwarp(IL(:,:,c), TL, 'bilinear', bb);
+    [JL(:,:,c),bbL,alphaL] = imwarp2(IL(:,:,c), TL, 'bilinear', bb);
 
     % Warp RIGHT
-    [JR(:,:,c),bbR,alphaR] = imwarp(IR(:,:,c), TR, 'bilinear', bb);
+    [JR(:,:,c),bbR,alphaR] = imwarp2(IR(:,:,c), TR, 'bilinear', bb);
 
 end
 
