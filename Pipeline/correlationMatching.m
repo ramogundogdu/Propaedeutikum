@@ -5,9 +5,9 @@ function DispMap = correlationMatching(ILeft, IRight)
 
 
 
-%     if size(ILeft) ~= size(IRight) 
-%         error('Input images must have equal dimensions');
-%     end
+     if size(ILeft) ~= size(IRight) 
+         error('Input images must have equal dimensions');
+     end
 
     [rows, columns] = size(ILeft);
 
@@ -16,6 +16,7 @@ function DispMap = correlationMatching(ILeft, IRight)
     
     DispMap = zeros(rows,columns);
 
+    disp('---------------- Matching.... ');
 
     %for every pixel of the left image
     for i=1:rows
@@ -44,7 +45,7 @@ function DispMap = correlationMatching(ILeft, IRight)
 
         end
     end
-
+     disp('---------------- Matching DONE ');
 
     
 
@@ -73,5 +74,6 @@ function DispMap = correlationMatching(ILeft, IRight)
             end
         end
     end
+
 end
 
