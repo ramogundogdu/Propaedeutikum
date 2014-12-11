@@ -1,0 +1,3 @@
+imageLeft = imread("
+
+DispMap = correlationMatching(ILeft, IRight)
