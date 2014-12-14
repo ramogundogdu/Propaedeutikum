@@ -7,13 +7,13 @@ function Points3D = triangulateMatches(Dispmap, KLeft, KRight, R, T)
 
      [rows, columns] = size(Dispmap);
 
-     Points3D = zeros(rows, columns);
+     Points3D = zeros(rows, columns, 3);
 
      for i=1:rows
             for j=1:columns
 
-                currPointL = (i, j);
-                currPointR = (i, j+Dispmap(i,j)); 
+                currPointL = [i; j];
+                currPointR = [i; j+Dispmap(i,j)]; 
 
                 HomLGS =   [
                     PL(1,:) - PL(3,:)*currPointL(1,1) ;
@@ -25,8 +25,9 @@ function Points3D = triangulateMatches(Dispmap, KLeft, KRight, R, T)
                 [U,S,V] = svd(HomLGS);
                 Point3D = V(:,end);
                 Point3D = Point3D/Point3D(end);
-
-                Points3D(i,j) = Point3D;
+                
+                % save point in map. drop 4th value of homogenous vector
+                Points3D(i,j,:) = Point3D([1:3]);
 
             end;
      end;
@@ -50,4 +51,4 @@ function Points3D = triangulateMatches(Dispmap, KLeft, KRight, R, T)
     %     
     %  end; 
 
-end;
+end
