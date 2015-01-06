@@ -13,10 +13,13 @@
 imageLeft = imread('IMG_2039.jpg','jpg');
 imageRight = imread('IMG_9832.JPG','jpg');
 
+% rectification test frame
+load(['testData/matching_test_frame']);
 % rectified test data
 load(['testData/rectify_test_results']);
 
-load(['cam_data']);
+% calibration data
+%load(['cam_data']);
 
 % ============================
 % Rectification
@@ -28,7 +31,6 @@ load(['cam_data']);
 % Correlation matching
 % ============================
 
-%DispMap = correlationMatching(imageLeft, imageRight, 5);
-DispMap = correlationMatching(RectifiedImageLeft, RectifiedImageRight, 5);
-
+%DispMap = correlationMatching(RectifiedImageLeft, RectifiedImageRight, 5);
+DispMap = correlationMatchingFrame(RectifiedImageLeft, RectifiedImageRight, 5, FrameO, FrameDim);
 
