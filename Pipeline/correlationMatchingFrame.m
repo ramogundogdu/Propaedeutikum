@@ -13,6 +13,9 @@ function DispMap = correlationMatchingFrame(ILeft, IRight, windowSize, FrameO, F
     
     FrameTopLeft = FrameO;
     FrameBottomRight = [FrameO(1)+FrameDim(1), FrameO(2)+FrameDim(2)];
+    
+    frameRows = FrameDim(2)
+    frameRowCount = 0
 
     windowSizeX = windowSize;
     windowSizeY = windowSize;
@@ -24,15 +27,20 @@ function DispMap = correlationMatchingFrame(ILeft, IRight, windowSize, FrameO, F
     tic
     
     %for every pixel in the test frame of the left image
-    for i=FrameTopLeft(2):FrameBottomRight(2)
-        parfor j=FrameTopLeft(1):FrameBottomRight(1)
+    for i=FrameTopLeft(2):4:FrameBottomRight(2)
+        
+        frameRowCount = frameRowCount+1;
+        str = sprintf('row %d of %d',frameRowCount,frameRows);
+        disp(str);
+        
+        for j=FrameTopLeft(1):4:FrameBottomRight(1)
 
             % window for left pixel
             wL = windowing(i, j, windowSizeX, windowSizeY, ILeft);
             scalarValues = zeros(1, columns);
             
             % for each pixel on epipolar line of right image
-            for k=1:columns
+            parfor k=1:columns
                 % build window 
                 wR = windowing(i, k, windowSizeX, windowSizeY, IRight);
                 
