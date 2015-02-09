@@ -13,9 +13,13 @@
 %imageLeft = imread('IMG_2039.jpg','jpg');
 %imageRight = imread('IMG_9832.JPG','jpg');
 
+% masked stereo fotos
+imageLeft = imread('RectifiedImageLeft_masked.jpg','jpg');
+imageRight = imread('RectifiedImageRight_masked.jpg','jpg');
+
 % rectified SCALED DOWN fotos
-RectifiedImageLeftSMALL = imread('RectifiedImageLeft250w.jpg','jpg');
-RectifiedImageRightSMALL = imread('RectifiedImageRight250w.jpg','jpg');
+% RectifiedImageLeftSMALL = imread('RectifiedImageLeft250w.jpg','jpg');
+% RectifiedImageRightSMALL = imread('RectifiedImageRight250w.jpg','jpg');
 
 % rectification test frame
 load(['testData/matching_test_frame']);
@@ -35,6 +39,7 @@ load(['testData/rectify_test_results']);
 % Correlation matching
 % ============================
 
-DispMap = correlationMatching(RectifiedImageLeftSMALL, RectifiedImageRightSMALL, 7);
+%DispMap = correlationMatching(RectifiedImageLeftSMALL, RectifiedImageRightSMALL, 7);
 %DispMap = correlationMatchingFrame(RectifiedImageLeft, RectifiedImageRight, 5, FrameO, FrameDim);
+DispMap = correlationMatchingWinAvMasked(imageLeft, imageRight, 7);
 

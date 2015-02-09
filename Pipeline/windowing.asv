@@ -2,7 +2,7 @@ function [v, vAvg] = windowing(row, col, windowWidth, windowHeight, image)
         % creates vector with color information about each pixel in the
         % window area. RGB values for each pixel are added in order
         
-        vLength = windowWidth * windowHeight;
+        vLength = windowWidth*windowHeight;
         v = zeros(1, vLength);
         count = 0;
         
@@ -19,17 +19,19 @@ function [v, vAvg] = windowing(row, col, windowWidth, windowHeight, image)
                
                 count = count+1;
                 
-                if xCood < 1 || yCood < 1 || xCood > iColumns || yCood > iRows
-                   pixValue = double(0); 
-                else
-                   pixValue = double(image(yCood,xCood));
-                end
+                % for each RGB value of pixel
+                for c=1:iColorDepth
+                    if xCood < 1 || yCood < 1 || xCood > iColumns || yCood > iRows
+                       pixValue = 0; 
+                    else
+                       pixValue = image(yCood,xCood,c); %changed x and y cood - for testing purpouse
+                    end
 
-                v(1, count) = pixValue;
-                
+                    v(1, count) = pixValue;
+                end
             end
         end
         
         % calc average
-        vAvg = double(sum(v)) / double(vLength);
+        vAvg = sum(v) / vLength
 end
