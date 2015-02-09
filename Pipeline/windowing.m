@@ -1,11 +1,11 @@
-function cV = windowing(x, y, windowWidth, windowHeight, image)
+function cV = windowing(row, col, windowWidth, windowHeight, image)
         % creates vector with color information about each pixel in the
         % window area. RGB values for each pixel are added in order
         
         cV = zeros(1,windowWidth*windowHeight*3);
         count = 0;
         
-        startCoods = [x-floor(windowWidth/2), y-floor(windowHeight/2)];
+        startCoods = [col-floor(windowWidth/2), row-floor(windowHeight/2)];
         [iRows, iColumns, iColorDepth] = size(image);
         
         % for each pixel in window
@@ -23,7 +23,7 @@ function cV = windowing(x, y, windowWidth, windowHeight, image)
                     if xCood < 1 || yCood < 1 || xCood > iColumns || yCood > iRows
                        pixValue = 0; 
                     else
-                       pixValue = image(xCood,yCood,c); 
+                       pixValue = image(yCood,xCood,c); %changed x and y cood - for testing purpouse
                     end
 
                     cV(1, count) = pixValue;

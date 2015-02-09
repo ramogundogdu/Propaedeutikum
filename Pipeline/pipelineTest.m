@@ -10,8 +10,12 @@
 %imageRight = imread('right15-rgb.png','png');
 
 % stereo fotos
-imageLeft = imread('IMG_2039.jpg','jpg');
-imageRight = imread('IMG_9832.JPG','jpg');
+%imageLeft = imread('IMG_2039.jpg','jpg');
+%imageRight = imread('IMG_9832.JPG','jpg');
+
+% rectified SCALED DOWN fotos
+RectifiedImageLeftSMALL = imread('RectifiedImageLeft250w.jpg','jpg');
+RectifiedImageRightSMALL = imread('RectifiedImageRight250w.jpg','jpg');
 
 % rectification test frame
 load(['testData/matching_test_frame']);
@@ -31,6 +35,6 @@ load(['testData/rectify_test_results']);
 % Correlation matching
 % ============================
 
-%DispMap = correlationMatching(RectifiedImageLeft, RectifiedImageRight, 5);
-DispMap = correlationMatchingFrame(RectifiedImageLeft, RectifiedImageRight, 5, FrameO, FrameDim);
+DispMap = correlationMatching(RectifiedImageLeftSMALL, RectifiedImageRightSMALL, 7);
+%DispMap = correlationMatchingFrame(RectifiedImageLeft, RectifiedImageRight, 5, FrameO, FrameDim);
 
