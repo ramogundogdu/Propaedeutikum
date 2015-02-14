@@ -17,6 +17,12 @@
 imageLeft = imread('RectifiedImageLeft_masked.jpg','jpg');
 imageRight = imread('RectifiedImageRight_masked.jpg','jpg');
 
+ILeftSW = rgb2gray(imageLeft);
+IRightSW = rgb2gray(imageRight);
+
+ILeftDouble = im2double(ILeftSW);
+IRightDouble = im2double(IRightSW);
+     
 % rectified SCALED DOWN fotos
 % RectifiedImageLeftSMALL = imread('RectifiedImageLeft250w.jpg','jpg');
 % RectifiedImageRightSMALL = imread('RectifiedImageRight250w.jpg','jpg');
@@ -41,5 +47,5 @@ load(['testData/rectify_test_results']);
 
 %DispMap = correlationMatching(RectifiedImageLeftSMALL, RectifiedImageRightSMALL, 7);
 %DispMap = correlationMatchingFrame(RectifiedImageLeft, RectifiedImageRight, 5, FrameO, FrameDim);
-DispMap = correlationMatchingWinAvMasked(imageLeft, imageRight, 7);
+DispMap = correlationMatchingWinAvMasked(ILeftDouble, IRightDouble, 7);
 
