@@ -9,9 +9,16 @@ function Points3D = triangulateMatches(Dispmap, KLeft, KRight, R, T)
 
      Points3D = zeros(rows, columns, 3);
 
+     disp(' ----------- triangulation running -------------');
+     tic
+     
      for i=1:rows
             for j=1:columns
 
+                if (isnan(Dispmap(i,j)))
+                    continue
+                end
+                
                 currPointL = [i; j];
                 currPointR = [i; j+Dispmap(i,j)]; 
 
@@ -31,6 +38,9 @@ function Points3D = triangulateMatches(Dispmap, KLeft, KRight, R, T)
 
             end;
      end;
+     
+     toc
+     disp(' ----------- triangulation done -------------');
 
     %  for k=1:length(ProjectionPointsCl(end,:))
     %      
